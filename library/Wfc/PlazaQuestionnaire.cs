@@ -129,23 +129,20 @@ namespace PkmnFoundations.Wfc
         private string[] QuestionAnswers;
 
         /// <summary>A series of unknown bytes.</summary>
-        public byte[] Unk;
+        public byte[] Unk; // 12 bytes
 
         /// <summary>If the question is a 'special' question, and the man in the plaza will say so.</summary>
         public bool IsSpecial;
 
         public PlazaQuestion(int id, string sentence, string[] answers, byte[] unk, bool isSpecial)
+            : this(id, id, sentence, answers, unk, isSpecial)
         {
-            ID = id;
-            PublicID = id;
-            Unk = unk;
-            Sentence = sentence;
-            Answers = answers;
-            IsSpecial = isSpecial;
         }
 
         private PlazaQuestion(int id, int publicID, string sentence, string[] answers, byte[] unk, bool isSpecial)
         {
+            if (Unk == null || Unk.Length != 12) throw new ArgumentException("Unk must be 12 bytes.");
+
             ID = id;
             PublicID = publicID;
             Unk = unk;
@@ -231,14 +228,20 @@ namespace PkmnFoundations.Wfc
             }
 
             byte[] unk = new byte[] {
-data[start + 336], data[start + 337], data[start + 338], data[start + 339], data[start + 340],
-data[start + 341], data[start + 342], data[start + 343], data[start + 344], data[start + 345],
-data[start + 346], data[start + 347],
-};
+                data[start + 336], data[start + 337], data[start + 338], data[start + 339], data[start + 340],
+                data[start + 341], data[start + 342], data[start + 343], data[start + 344], data[start + 345],
+                data[start + 346], data[start + 347],
+                };
             bool isSpecial = BitConverter.ToInt32(data, start + 348) != 0;
 
             return new PlazaQuestion(internalID, publicID, question, answers, unk, isSpecial);
         }
+    }
+
+    public enum StandardQuestions : int
+    {
+        // todo: Document all the standard questions
+        Custom = 1001
     }
 
     public class SubmittedQuestionnaire

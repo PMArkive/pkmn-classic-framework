@@ -11,20 +11,20 @@ namespace PkmnFoundations.Wfc
     {
         public VipRecord()
         {
-          Pid = 0;
-          WordPartA = 0;
-          WordPartB = 0;
-          WordPartC = 0;
-          WordPartD = 0;
+            Pid = 0;
+            WordPartA = 0;
+            WordPartB = 0;
+            WordPartC = 0;
+            WordPartD = 0;
         }
 
         public VipRecord(uint pid)
         {
-          Pid = pid;
-          WordPartA = 0;
-          WordPartB = 0;
-          WordPartC = 0;
-          WordPartD = 0;
+            Pid = pid;
+            WordPartA = 0;
+            WordPartB = 0;
+            WordPartC = 0;
+            WordPartD = 0;
         }
 
         public VipRecord(uint pid, byte wordA, byte wordB, byte wordC, byte wordD)

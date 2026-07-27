@@ -136,6 +136,7 @@
     <Compile Include="Support\TrendyPhrase5.cs" />
     <Compile Include="Support\TrendyPhraseBase.cs" />
     <Compile Include="Support\ValidationSummary.cs" />
+    <Compile Include="Wfc\VipRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
